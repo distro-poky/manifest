@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+<!-- hw layers sharing revision defaults -->
+<project remote="origin" groups="origin hw intel" name="layers/meta-intel" path="layers/meta-intel"/>
+<!-- hw layers with specific revision -->
+<project remote="origin" groups="origin hw intel" revision="gatesgarth" upstream="gatesgarth" name="layers/meta-secure-core" path="layers/meta-secure-core"/>
+</manifest>
