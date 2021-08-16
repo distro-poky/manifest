@@ -1,0 +1,11 @@
+.repo/
+build*/buildhistory/
+build*/cache/
+build*/conf/
+build*/tmp/
+!build*/deploy/images/
+!build*/deploy/licenses/
+downloads/*
+layers/*
+
+*~
