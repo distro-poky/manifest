@@ -131,38 +131,28 @@ Build command example.
 | --- | --- |
 | help | . ./setup-environment --help  |
 | clean | bitbake -c cleanall package |
-| __imx8qm-var-som__ | MACHINE=imx8qm-var-som DISTRO=poky . ./setup-environment build-1 |
+| __aaeon-bt06__ | MACHINE=aaeon-bt06 DISTRO=foss-base . ./setup-environment build |
 | fetch | bitbake core-image-sato --runall=fetch |
 | sdk | bitbake core-image-sato -c populate_sdk |
 | build | bitbake core-image-sato |
 | build | bitbake core-image-full-cmdline |
-| __intel-corei7-64__ | MACHINE=intel-corei7-64 DISTRO=poky . ./setup-environment build-2 |
+| __adlink-cexpress-bl__ | MACHINE=adlink-cexpress-bl DISTRO=foss-base . ./setup-environment build |
 | fetch | bitbake core-image-sato --runall=fetch |
 | sdk | bitbake core-image-sato -c populate_sdk |
 | build | bitbake core-image-sato |
 | build | bitbake core-image-full-cmdline |
-| __imx8qm-var-som__ | MACHINE=imx8qm-var-som DISTRO=fslc-xwayland . ./setup-environment build-3 |
+| __imx8qm-var-som__ | MACHINE=imx8qm-var-som DISTRO=foss-base . ./setup-environment build |
+| fetch | bitbake core-image-sato --runall=fetch |
+| sdk | bitbake core-image-sato -c populate_sdk |
+| build | bitbake core-image-sato |
+| build | bitbake core-image-full-cmdline |
+| __imx8qm-var-som__ | MACHINE=imx8qm-var-som DISTRO=fslc-xwayland . ./setup-environment build |
 | fetch | bitbake fsl-image-gui --runall=fetch |
 | build | bitbake fsl-image-gui |
 | fetch | bitbake fsl-image-qt5 --runall=fetch |
 | sdk | bitbake fsl-image-qt5 -c populate_sdk |
 | build | bitbake fsl-image-qt5 |
 | build | bitbake fsl-image-qt5 |
-| __aaeon-bt06__ | MACHINE=aaeon-bt06 DISTRO=foss-base . ./setup-environment build-4 |
-| fetch | bitbake core-image-sato --runall=fetch |
-| sdk | bitbake core-image-sato -c populate_sdk |
-| build | bitbake core-image-sato |
-| build | bitbake core-image-full-cmdline |
-| __adlink-cexpress-bl__ | MACHINE=adlink-cexpress-bl DISTRO=foss-base . ./setup-environment build-5 |
-| fetch | bitbake core-image-sato --runall=fetch |
-| sdk | bitbake core-image-sato -c populate_sdk |
-| build | bitbake core-image-sato |
-| build | bitbake core-image-full-cmdline |
-| __varascite-var-som-mx8__ | MACHINE=varascite-var-som-mx8 DISTRO=foss-base . ./setup-environment build-6 |
-| fetch | bitbake core-image-sato --runall=fetch |
-| sdk | bitbake core-image-sato -c populate_sdk |
-| build | bitbake core-image-sato |
-| build | bitbake core-image-full-cmdline |
 
 ## Notes
 
