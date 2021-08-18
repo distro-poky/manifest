@@ -1,0 +1,74 @@
+# Pipeline image
+image:
+  name: ubuntu-build:20.04-amd64
+
+# Pipeline Stages
+stages:
+  - build
+  - deploy
+
+# Default Build
+variables:
+  BUILD_DISTRO:       foss-base
+  BUILD_MACHINE:      aaeon-bt06
+  BUILD_TARGET:       core-image-full-cmdline
+  BUILD_MANIFEST:     gitlabcom-http.xml
+
+# Cache is per branch
+cache: &global_cache
+  key: cache-key
+  paths:
+    - .repo/
+    - $CI_COMMIT_REF_SLUG/
+    - downloads/
+    - layers/
+    - sstate-cache/
+
+# Prejob checks
+.before_script:
+  - '[[ "$(whoami)" == "root" ]] && echo "ERROR: Started as root" && exit 1'
+
+.build_script: &build_script
+  script:
+    - repo init -u $CI_PROJECT_URL -m $BUILD_MANIFEST
+    - repo sync --no-clone-bundle
+    - repo forall all -c "git checkout --track $REPO_REMOTE/$REPO_RREV"
+    - repo forall all -c "git checkout $REPO_LREV"
+    - MACHINE=$BUILD_MACHINE DISTRO=$BUILD_DISTRO . ./setup-environment $CI_COMMIT_REF_SLUG
+    - bitbake $BUILD_TARGET --runall=fetch | tee bitbake-gitlabrunner.log
+    - bitbake $BUILD_TARGET | tee -a bitbake-gitlabrunner.logsy
+    - repo manifest --revision-as-HEAD | tee bitbake-manifest.xml
+
+.build_artifacts: &build_artifacts
+  artifacts:
+    paths:
+      - $CI_COMMIT_REF_SLUG/bitbake-manifest.xml
+      - $CI_COMMIT_REF_SLUG/bitbake-gitlabrunner.log
+
+build:
+  stage: build
+  timeout: 4 hours
+  tags:
+    - docker
+  cache:
+    <<: *global_cache
+  script:
+    <<: *build_script
+  artifacts:
+    <<: *build_artifacts
+
+deploy:
+  stage: deploy
+  timeout: 60 minutes
+  tags:
+    - docker
+  script:
+    - repo forall all -c "git checkout --track $REPO_REMOTE/$REPO_RREV"
+    - repo manifest --revision-as-HEAD | tee layers/base/$CI_COMMIT_TIMESTAMP-manifest.xml
+
+    - git -C layers/base add $(date)-bitbake-manifest.xml
+    - echo git push $CI_PROJECT_URL
+    - echo "DEPLOY"
+  needs:
+    - job: build
+      artifacts: true

@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
+
 <!-- BRANCH SPECIFIC : USE CAUTION DURING MERGES -->
 <remote fetch="ssh://gitlab/group" name="local"/>
+
 <!-- layers sharing revision defaults -->
+
 <!--
-<project remote="local" groups="local sw foss" name="layers/meta-foss" path="layers/meta-foss"/>
-<project remote="local" groups="local sw closed" name="layers/meta-closed" path="layers/meta-closed"/>
+<project remote="local" groups="local sw foss"
+    name="layers/meta-foss" path="layers/meta-foss"/>
+
+<project remote="local" groups="local sw closed"
+    name="layers/meta-closed" path="layers/meta-closed"/>
 -->
+
 <!-- layers with specific revision -->
+
 <!--
-<project remote="local" groups="local sw foss" revision="0000000000000000000000000000000000000000" upstream="branch" name="layers/meta-foss" path="layers/meta-foss"/>
-<project remote="local" groups="local sw closed" revision="0000000000000000000000000000000000000000" upstream="branch" name="layers/meta-closed" path="layers/meta-closed"/>
+<project remote="local" groups="local sw foss"
+    revision="0000000000000000000000000000000000000000" upstream="branch"
+    name="layers/meta-foss" path="layers/meta-foss"/>
+
+<project remote="local" groups="local sw closed"
+    revision="0000000000000000000000000000000000000000" upstream="branch"
+    name="layers/meta-closed" path="layers/meta-closed"/>
 -->
+
 </manifest>

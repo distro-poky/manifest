@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
+
 <!-- hw layers sharing revision defaults -->
-<project remote="origin" groups="origin hw imx8" name="layers/meta-freescale-3rdparty" path="layers/meta-freescale-3rdparty"/>
-<project remote="origin" groups="origin hw imx8" name="layers/meta-freescale-distro" path="layers/meta-freescale-distro"/>
-<project remote="origin" groups="origin hw imx8" name="layers/meta-freescale" path="layers/meta-freescale"/>
-<project remote="origin" groups="origin hw imx8" name="layers/meta-variscite-fslc" path="layers/meta-variscite-fslc"/>
+
+<project remote="origin" groups="origin hw imx8"
+    name="layers/meta-freescale-3rdparty" path="layers/meta-freescale-3rdparty"/>
+
+<project remote="origin" groups="origin hw imx8"
+    name="layers/meta-freescale-distro" path="layers/meta-freescale-distro"/>
+
+<project remote="origin" groups="origin hw imx8"
+    name="layers/meta-freescale" path="layers/meta-freescale"/>
+
+<project remote="origin" groups="origin hw imx8"
+    name="layers/meta-variscite-fslc" path="layers/meta-variscite-fslc"/>
+
 <!-- hw layers with specific revision -->
+
 </manifest>

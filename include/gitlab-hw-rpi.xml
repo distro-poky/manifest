@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
+
 <!-- hw layers sharing revision defaults -->
-<project remote="origin" groups="origin hw rpi" name="layers/meta-raspberrypi" path="layers/meta-raspberrypi"/>
-<project remote="origin" groups="origin hw rpi" name="layers/meta-updater-raspberrypi" path="layers/meta-updater-raspberrypi"/>
+
+<project remote="origin" groups="origin hw rpi"
+    name="layers/meta-raspberrypi" path="layers/meta-raspberrypi"/>
+
+<project remote="origin" groups="origin hw rpi"
+    name="layers/meta-updater-raspberrypi" path="layers/meta-updater-raspberrypi"/>
+
 <!-- hw layers with specific revision -->
+
 </manifest>

@@ -127,45 +127,51 @@ Available manifests,
 Download command example,
 Build command example.
 
-| MACHINE | Build Environment Commands |
-| --- | --- |
-| help | . ./setup-environment --help  |
-| clean | bitbake -c cleanall package |
-| __aaeon-bt06__ | MACHINE=aaeon-bt06 DISTRO=foss-base . ./setup-environment build |
-| fetch | bitbake core-image-sato --runall=fetch |
-| sdk | bitbake core-image-sato -c populate_sdk |
-| build | bitbake core-image-sato |
-| build | bitbake core-image-full-cmdline |
-| __adlink-cexpress-bl__ | MACHINE=adlink-cexpress-bl DISTRO=foss-base . ./setup-environment build |
-| fetch | bitbake core-image-sato --runall=fetch |
-| sdk | bitbake core-image-sato -c populate_sdk |
-| build | bitbake core-image-sato |
-| build | bitbake core-image-full-cmdline |
-| __imx8qm-var-som__ | MACHINE=imx8qm-var-som DISTRO=foss-base . ./setup-environment build |
-| fetch | bitbake core-image-sato --runall=fetch |
-| sdk | bitbake core-image-sato -c populate_sdk |
-| build | bitbake core-image-sato |
-| build | bitbake core-image-full-cmdline |
-| __imx8qm-var-som__ | MACHINE=imx8qm-var-som DISTRO=fslc-xwayland . ./setup-environment build |
-| fetch | bitbake fsl-image-gui --runall=fetch |
-| build | bitbake fsl-image-gui |
-| fetch | bitbake fsl-image-qt5 --runall=fetch |
-| sdk | bitbake fsl-image-qt5 -c populate_sdk |
-| build | bitbake fsl-image-qt5 |
-| build | bitbake fsl-image-qt5 |
+| Build | MACHINE | Bitbake Commands |
+| --- | --- | --- |
+| | help | . ./setup-environment --help  |
+| | clean | bitbake -c cleanall package |
+| __build-1__ | __aaeon-bt06__ | MACHINE=aaeon-bt06 DISTRO=foss-base . ./setup-environment build-1 |
+| | fetch | bitbake --runall fetch core-image-full-cmdline |
+| | build | bitbake core-image-full-cmdline |
+| | sdk | bitbake -c populate_sdk core-image-full-cmdline |
+| __build-2__ | __adlink-cexpress-bl__ | MACHINE=adlink-cexpress-bl DISTRO=foss-base . ./setup-environment build-2 |
+| | fetch | bitbake --runall fetch core-image-full-cmdline |
+| | build | bitbake core-image-full-cmdline |
+| | sdk | bitbake -c populate_sdk core-image-full-cmdline |
+| __build-3__ | __imx8qm-var-som__ | MACHINE=imx8qm-var-som DISTRO=foss-base . ./setup-environment build-3 |
+| | fetch | bitbake --runall fetch core-image-full-cmdline |
+| | build | bitbake core-image-full-cmdline |
+| | sdk | bitbake -c populate_sdk core-image-full-cmdline |
+| __oem-3__ | __imx8qm-var-som__ | MACHINE=imx8qm-var-som DISTRO=fslc-xwayland . ./setup-environment oem-3 |
+| | fetch | bitbake --runall fetch [ fsl-image-gui | fsl-image-qt5 ] |
+| | build | bitbake [ fsl-image-gui | fsl-image-qt5 ] |
+| | sdk | bitbake -c populate_sdk [ fsl-image-gui | fsl-image-qt5 ] |
 
 ## Notes
 
 ### network-proxy
 
 Utilization of a network proxy (squid) in a CI/CD build environment can
-be used to cache and speed up large file fetchs that are repetitive.
+be used to cache and speed up file fetchs that are repetitive.
+
+https://wiki.yoctoproject.org/wiki/Working_Behind_a_Network_Proxy
 
 ```sh
-export http_proxy="http://proxy:3128/"
-export https_proxy="https://proxy:3128/"
-export ftp_proxy="http://proxy:3128/"
-export no_proxy="local.domain"
+$ export http_proxy='http://proxy:3128/'
+$ export https_proxy='https://proxy:3128/'
+$ export ftp_proxy='http://proxy:3128/'
+$ export ALL_PROXY='socks://proxy:3128/'
+$ export all_proxy='socks://proxy:3128/'
+$ export no_proxy='localhost'
+
+$ sudo apt-get install socat
+$ wget http://git.yoctoproject.org/cgit/cgit.cgi/poky/plain/scripts/oe-git-proxy
+$ cp oe-git-proxy ~/bin
+$ chmod +x ~/bin/oe-git-proxy
+
+$ export GIT_PROXY_COMMAND="oe-git-proxy"
+$ export NO_PROXY=$no_proxy
 ```
 
 ### TOOLCHAIN=gcc

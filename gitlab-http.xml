@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
 
-  <remote fetch="https://gitlab.com/distro-poky" name="origin"/>
+  <remote fetch="http://gitlab/distro-poky" name="origin"/>
 
   <include name="include/upstream-dunfell.xml"/>
 
